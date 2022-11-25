@@ -1,0 +1,45 @@
+﻿@model IList<Vehicle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Vehicles</h1>
+
+@Html.ActionLink("Create New", "Create")
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Listing Price</th>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Mileage</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ListingPrice</td>
+                    <td>@item.Manufacturer</td>
+                    <td>@item.Model</td>
+                    <td>@item.Color</td>
+                    <td>@item.Mileage</td>
+                    <td>@item.Year</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", routeValues: new { id = item.VehicleID }) |
+                        @Html.ActionLink("Details", "Details", routeValues: new { id = item.VehicleID }) |
+                        @Html.ActionLink("Delete", "Delete", routeValues: new { id = item.VehicleID }) |
+                        @Html.ActionLink("Mark as Sold", "MarkSold", routeValues: new { id = item.VehicleID })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

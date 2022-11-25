@@ -1,0 +1,57 @@
+﻿@model Salesperson
+ 
+@{
+    ViewData["Title"] = "Salesperson Form";
+}
+
+@{
+    string heading = Model.SalespersonID == 0 ? "Create" : "Edit";
+}
+
+<h1>@heading</h1>
+
+@using (Html.BeginForm("Save", "Salesperson"))
+{
+    <div class="row">
+        <div class="col-4">
+            <h3>Salespersons</h3>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.FirstName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.LastName, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.HireDate, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.HireDate, htmlAttributes: new { @class = "form-control", type = Model.SalespersonID == 0 ? "datetime-local": "" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Email, htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Salary, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Salary, htmlAttributes: new { @class = "form-control" })
+            </div>
+
+            @Html.HiddenFor(m => m.SalespersonID)
+
+            @{
+                string buttonValue = Model.SalespersonID == 0 ? "Create" : "Save";
+            }
+            <div class="form-group">
+                <input type="submit" value=@buttonValue class="btn btn-primary" />
+            </div>
+
+            <div class="form-group">
+                @Html.ActionLink("Back to list", "Index")
+            </div>
+        </div>
+    </div>
+
+}

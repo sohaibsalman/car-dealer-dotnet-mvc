@@ -1,0 +1,48 @@
+﻿@model VehicleSaleViewModel
+
+@{
+    ViewData["Title"] = "MarkSold";
+}
+
+<h3>Sale for @Model.Sale.Vehicle.Year @Model.Sale.Vehicle.Color @Model.Sale.Vehicle.Manufacturer @Model.Sale.Vehicle.Model</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.SaleDate, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Sale.SaleDate, htmlAttributes: new { type = "datetime-local", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Sale.SaleDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.SalePrice, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Sale.SalePrice, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Sale.SalePrice, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.BuyerID, htmlAttributes: new { @class = "control-label" })
+
+                @Html.DropDownListFor(m => m.Sale.BuyerID, new SelectList(Model.Buyers, "BuyerID", "BuyerName" ), htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.SalespersonID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.Sale.SalespersonID, new SelectList(Model.Salespeople, "SalespersonID", "Email"), htmlAttributes: new { @class = "form-control" })
+            </div>
+
+            @Html.HiddenFor(m => m.Sale.Vehicle.VehicleID)
+            @Html.HiddenFor(m => m.Sale.Vehicle.Manufacturer)
+            @Html.HiddenFor(m => m.Sale.Vehicle.Model)
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Confirm Sale" />
+            </div>
+            <div class="form-group">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model Salesperson 
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<h3>Salesperson</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <table class="table table-borderless">
+            <tr>
+                <th>First Name</th>
+                <td>@Model.FirstName</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>@Model.LastName</td>
+            </tr>
+            <tr>
+                <th>Hire Date</th>
+                <td>@Model.HireDate</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <th>Salary</th>
+                <td>@Model.Salary</td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="col-md-12">
+        @Html.ActionLink("Edit", "Edit", routeValues: new { id = Model.SalespersonID })
+        <span> | </span>
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+
+</div>

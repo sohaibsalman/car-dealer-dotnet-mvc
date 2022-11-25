@@ -1,0 +1,38 @@
+﻿@model IList<Sale>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sale Date</th>
+            <th>Sale Price</th>
+            <th>Buyer</th>
+            <th>Salesperson</th>
+            <th>Vehicle</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SaleDate</td>
+                    <td>@item.SalePrice</td>
+                    <td>@item.Buyer.FirstName @item.Buyer.LastName</td>
+                    <td>@item.Salesperson.FirstName @item.Salesperson.LastName</td>
+                    <td>@item.Vehicle.Year @item.Vehicle.Manufacturer @item.Vehicle.Model</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", routeValues: new { id = item.SaleID }) | 
+                        @Html.ActionLink("Delete", "Delete", routeValues: new { id = item.SaleID })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

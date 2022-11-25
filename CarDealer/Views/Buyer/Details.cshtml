@@ -1,0 +1,79 @@
+﻿@model BuyerViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<h3>Buyer</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <table class="table table-borderless">
+            <tr>
+                <th>First Name</th>
+                <td>@Model.Buyer.FirstName</td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td>@Model.Buyer.LastName</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>@Model.Buyer.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>@Model.Buyer.Address</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>@Model.Buyer.City</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>@Model.Buyer.State</td>
+            </tr>
+            <tr>
+                <th>Zip</th>
+                <td>@Model.Buyer.Zip</td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="col-md-12">
+        @if (Model.Sales != null && Model.Sales.Count > 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sale Date</th>
+                        <th>Sale Price</th>
+                        <th>Sale Vehicle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Sales)
+                    {
+                        <tr>
+                            <td>@item.SaleDate</td>
+                            <td>@item.SalePrice</td>
+                            <td>
+                                @item.Vehicle.Year @item.Vehicle.Color
+                                @item.Vehicle.Manufacturer @item.Vehicle.Model
+                                @item.Vehicle.Mileage
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+        @Html.ActionLink("Edit", "Edit", routeValues: new { id = Model.Buyer.BuyerID })
+        <span> | </span>
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+    
+</div>

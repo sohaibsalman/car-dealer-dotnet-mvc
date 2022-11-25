@@ -1,0 +1,54 @@
+﻿@model Vehicle
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row">
+    <div class="col-4">
+        <h5>Vehicle</h5>
+        <hr />
+
+        <table class="table table-borderless">
+            <tr>
+                <th>Manufacturer</th>
+                <td>@Model.Manufacturer</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>@Model.Model</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>@Model.Type</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>@Model.Capacity</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>@Model.Color</td>
+            </tr>
+            <tr>
+                <th>Mileage</th>
+                <td>@Model.Mileage</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>@Model.Year</td>
+            </tr>
+            <tr>
+                <th>Listing Price</th>
+                <td>@Model.ListingPrice</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-12">
+        @Html.ActionLink("Edit", "Edit", routeValues: new { id = Model.VehicleID })
+        <span> | </span>
+        @Html.ActionLink("Back to list", "Index")
+    </div>
+</div>

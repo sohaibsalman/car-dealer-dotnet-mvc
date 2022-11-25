@@ -1,0 +1,50 @@
+﻿@model VehicleSaleViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<h3>Sale</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.SaleDate, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Sale.SaleDate, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Sale.SaleDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.SalePrice, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Sale.SalePrice, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Sale.SalePrice, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.BuyerID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.Sale.BuyerID, new SelectList(Model.Buyers, "BuyerID", "BuyerName"), htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.SalespersonID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.Sale.SalespersonID, new SelectList(Model.Salespeople, "SalespersonID", "Email"), htmlAttributes: new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sale.VehicleID, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.Sale.VehicleID, new SelectList(Model.Vehicles, "VehicleID", "VehicleInfo"), htmlAttributes: new { @class = "form-control" })
+            </div>
+
+            @Html.HiddenFor(m => m.Sale.SaleID)
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+            <div class="form-group">
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+
+    </div>
+</div>
